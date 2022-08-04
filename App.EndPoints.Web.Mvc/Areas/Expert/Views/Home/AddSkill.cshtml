@@ -1,0 +1,66 @@
+﻿@using App.Domain.Core.ExpertAgg.Dtos
+@model ExpertSkillDto
+<form method="post" enctype="multipart/form-data" asp-area="Expert" asp-controller="Home" asp-action="AddSkill">
+    <div class="border p-3">
+        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+        <div class="form-group row">
+            <h2 class="text-info pl-3">اقزودن مهارت ها </h2>
+        </div>
+
+
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row p-3">
+                    <div class="col-4">
+                        <label asp-for="ThirdCategoryId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="ThirdCategoryId" asp-items="@ViewBag.ThirdCategoryDropDown" class="form-control">
+                            <option disabled selected>-- انتخاب گروه    --</option>
+                        </select>
+                        <span asp-validation-for="ThirdCategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row p-3">
+                    <div class="col-6">
+                        <input type="submit" value="افزودن" class="btn btn-primary w-100" />
+                    </div>
+                    <div class="col-2">
+                        <a asp-controller="ThirdCategory" asp-action="Index" class="btn btn-success"><i class="fas fa-sign-out-alt"></i>بازگشت</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @* Keep this empty *@
+            </div>
+        </div>
+
+    </div>
+</form>
+<div class="row">
+    <div class="border p-3">
+        <h2>مهارت های من</h2>
+        
+            @foreach (var item in Model.CategoryList)
+            {
+                if (Model.CategoryList.Count() % 2 == 0)
+                {
+                    <p class="btn btn-info">@item</p>
+                }
+                else
+                {
+                    <p class="btn btn-primary">@item</p>
+                }
+            }
+        
+
+    </div>
+</div>
+
+
+@section scripts{
+    @{
+    <partial name="_ValidationScriptsPartial" />
+}
+}

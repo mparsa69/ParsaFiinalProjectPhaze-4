@@ -1,0 +1,49 @@
+﻿@using App.EndPoints.Web.Mvc.Areas.Admin.Models.ViewModels.Accounts
+@model UserManagementVM
+@{
+	ViewData["Title"] = " مسئولیت‌های کاربر";
+}
+
+<h3 style="float:right;"> مسئولیت‌های @Model.Name</h3>
+<div style="float:left;">
+	<div style="margin-top:1%; margin-bottom:1%;">
+		<form asp-action="AddUserRoles" formmethod="post" asp-route-userId="@Model.Id">
+			<div class="row">
+				<div class="col-auto">
+					<select class="form-select" name="role" asp-items="@(new SelectList(ViewBag.AllRoles))"></select>
+				</div>
+
+				<div class="col-auto">
+					<button type="submit" class="btn btn-primary">افزودن</button>
+				</div>
+			</div>
+
+		</form>
+	</div>
+</div>
+
+<br>
+<table class="table table-striped">
+	<thead>
+	<tr>
+		<th scope="col">مسئولیت</th>
+		<th scope="col"></th>
+	</tr>
+	</thead>
+	<tbody>
+	@foreach (var role in Model.Roles)
+	{
+		<tr>
+			<th scope="row">
+				@role
+			</th>
+			<td>
+				<form asp-action="RemoveRole" method="post" asp-route-userId="@Model.Id" >
+					<button class="btn btn-danger" name="role" value="@role">حذف</button>
+				</form>
+			</td>
+		</tr>
+	}
+	</tbody>
+</table>
+<a class="btn btn-danger" asp-action="Index">بازگشت</a>

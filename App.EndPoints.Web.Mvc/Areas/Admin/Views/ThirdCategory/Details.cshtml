@@ -1,0 +1,19 @@
+﻿@using App.Domain.Core.BaseService.Dtos
+@using Utility
+@model List<ThirdCategoryImageDto>
+<div class="row">
+@foreach (var item in Model)
+{
+    
+        <div class="col-6">
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="@ConstantProperty.ImageServicePath@item.Image" alt="Card image cap">
+        <div class="card-body">
+            @*<h1>@item.AppFile.Name</h1>*@
+        </div>
+        </div>
+    </div>
+   
+    
+}
+ </div>

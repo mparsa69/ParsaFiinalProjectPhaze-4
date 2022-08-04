@@ -1,0 +1,32 @@
+﻿@using App.Domain.Core.BaseService.Entities
+@model List<ThirdCategory>
+
+    <h2>گروه بندی</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">شناسه</th>
+            <th scope="col">نام</th>
+            <th scope="col">قیمت پایه </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.Id</th>
+                <td>@item.Title</td>
+                <td>@item.Price</td>
+               
+                <td>
+                    
+                    <a class="btn btn-primary" asp-controller="Order" asp-action="Create" asp-route-catId=@item.Id asp-route-secId="@item.SecondaryCategoryId">
+                        ثبت سفارش جدید 
+                    </a>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

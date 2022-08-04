@@ -1,0 +1,80 @@
+﻿@using App.Domain.Core.SuggestionAgg.Dtos
+@model List<SuggestionDto>
+@{
+    ViewData["Title"] = "لیست پیشنهادات";
+}
+
+<h3 style="float:right;"> لیست پیشنهادات  </h3>
+<br>
+@*
+<div style="margin-top:1%; margin-bottom:1%;">
+    <div class="row">
+
+        <table class="table table-striped">
+            <td><h3 style="float:right;">لیست سفارشات</h3></td>
+            <form asp-action="Index" formmethod="post">
+            <td><input class="form-control" name="name" placeholder="نام کاربری مورد نظر را وارد کنید"></td>
+            <td><button type="submit" class="btn btn-primary">جستجو</button></td>
+            </form>
+            <form asp-action="Index" formmethod="post">
+            <td><button type="submit" class="btn btn-primary">مشاهده همه</button></td>
+            </form>
+        </table>   
+    </div>
+</div>
+*@
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">شناسه</th>
+            <th scope="col">متخصص</th>
+            <th scope="col">قیمت پینهادی</th>
+            <th scope="col">ساعت شروع</th>
+            <th scope="col">مدت زمان انجام کار</th>
+            <th scope="col"> مورد تایید</th>
+            <th scope="col"> وضعیت نمایش </th>
+            @*<th scope="col">قیمت پیشنهادی متخصص</th>*@
+            @*<th scope="col"></th>*@
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.ExpertUserName</td>
+                <td>@item.SuggestedPrice</td>
+                <td>@item.StartTime</td>
+                <td>@item.Duration</td>
+                <td>@item.IsApproved</td> 
+                <td>@item.IsShow</td> 
+                @*<td>@item.suggestedPrice</td>*@ 
+                @*<td>
+                    <a class="btn btn-primary"  asp-controller="Suggestion" asp-action="Update" asp-route-id=@item.Id>
+                        ویرایش 
+                    </a>
+                </td>*@
+                <td> 
+                    <form method="post" asp-controller="Suggestion"  asp-action="Delete" asp-route-id="@item.Id">
+                        <input value="حذف" type="submit" class="btn btn-danger" />
+                    </form>
+                </td>
+            
+                <td>
+                    <form method="post" asp-controller="Suggestion"  asp-action="DisableShow" asp-route-id="@item.Id">
+                        <input value="عدم نمایش" type="submit" class="btn btn-danger" />  
+                    </form>
+                </td>
+                <td>
+                    <form method="post" asp-controller="Suggestion"  asp-action="EnableShow" asp-route-id="@item.Id">
+                        <input value=" نمایش" type="submit" class="btn btn-danger" />  
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

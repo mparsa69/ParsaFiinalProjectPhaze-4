@@ -1,0 +1,51 @@
+﻿@using App.Domain.Core.OrderAgg.Dtos
+@model List<OrderCustomerDto>
+@{
+    ViewData["Title"] = "لیست سفارشات";
+}
+<div style="margin-top:1%; margin-bottom:1%;">
+    <div class="row">
+
+        <table class="table table-striped">
+            <td><h3 style="float:right;">لیست سفارشات</h3></td>
+            <form asp-action="Index" formmethod="post">
+            <td><input class="form-control" name="name" placeholder="نام کاربری مورد نظر را وارد کنید"></td>
+            <td><button type="submit" class="btn btn-primary">جستجو</button></td>
+            </form>
+            <form asp-action="Index" formmethod="post">
+            <td><button type="submit" class="btn btn-primary">مشاهده همه</button></td>
+            </form>
+        </table>   
+    </div>
+</div>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">شناسه</th>
+            <th scope="col">عنوان</th>
+            <th scope="col">وضعیت</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.Status</td>
+                <td>
+                    <a class="btn btn-info" asp-area="Customer"  asp-controller="Order" asp-action="OrderSuggestion" asp-route-orderId=@item.Id>
+                        پیشنهاد متخصصان 
+                    </a>
+                    <a class="btn btn-primary" asp-area="Customer"  asp-controller="Order" asp-action="CreateComment" asp-route-orderId=@item.Id asp-route-categoryId=@item.CategoryId>
+                        کامنت  
+                    </a>
+                </td>
+            </tr>
+            
+        }
+    </tbody>
+</table>

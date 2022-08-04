@@ -1,0 +1,91 @@
+﻿@using App.Domain.Core.SuggestionAgg.Dtos
+@using App.Domain.Core.OrderAgg.Enums
+@model List<SuggestionDto>
+@{
+    ViewData["Title"] = "لیست پیشنهادات";
+}
+
+<h3 style="float:right;"> لیست پیشنهادات  </h3>
+<br>
+@*
+<div style="margin-top:1%; margin-bottom:1%;">
+    <div class="row">
+
+        <table class="table table-striped">
+            <td><h3 style="float:right;">لیست سفارشات</h3></td>
+            <form asp-action="Index" formmethod="post">
+            <td><input class="form-control" name="name" placeholder="نام کاربری مورد نظر را وارد کنید"></td>
+            <td><button type="submit" class="btn btn-primary">جستجو</button></td>
+            </form>
+            <form asp-action="Index" formmethod="post">
+            <td><button type="submit" class="btn btn-primary">مشاهده همه</button></td>
+            </form>
+        </table>   
+    </div>
+</div>
+*@
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">شناسه</th>
+            <th scope="col">نام مشتری</th>
+            <th scope="col">سرویس </th>
+            <th scope="col">قیمت پینهادی</th>
+            <th scope="col">ساعت شروع</th>
+            <th scope="col">تاریخ پیشمهادی</th>
+            <th scope="col">مدت زمان انجام کار</th>
+            <th scope="col"> مورد تایید</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.CustomerFirstName @item.CustomerLastName</td>
+                <td>@item.ThirdCategoryName</td>
+                <td>@item.SuggestedPrice</td>
+                <td>@item.StartTime</td>
+                <td>@item.SuggestionDate</td>
+                <td >@item.Duration</td>
+                <td>
+                    @if(item.IsApproved==false){<p class="btn btn-danger">@item.IsApproved</p>}
+
+                    else{<p class="btn btn-success">@item.IsApproved</p>}
+                </td>  
+                @*<td>
+                    <a class="btn btn-primary"  asp-controller="Suggestion" asp-action="Update" asp-route-id=@item.Id>
+                        ویرایش 
+                    </a>
+                </td>*@
+                <td> 
+                    @if(item.IsApproved==false){
+                        <form method="post" asp-area="Expert" asp-controller="Home"  asp-action="DeleteSuggestion" asp-route-id="@item.Id">
+                        <input value="حذف" type="submit" class="btn btn-danger" />
+                    </form>
+                    }
+                    
+                </td>
+
+                <td><form method="post" asp-area="Expert" asp-controller="Home"  asp-action="WorkStatus" asp-route-statusId="3" asp-route-orderId="@item.OrderId">
+                        <input value="شروع شد " type="submit" class="btn btn-primary" />
+                     </form>    
+                </td>
+                <td><form method="post" asp-area="Expert" asp-controller="Home"  asp-action="WorkStatus" asp-route-statusId="4" asp-route-orderId="@item.OrderId">
+                        <input value="پایان یافت" type="submit" class="btn btn-info" />
+                     </form>    
+                </td>
+                <td><form method="post" asp-area="Expert" asp-controller="Home"  asp-action="WorkStatus" asp-route-statusId="5" asp-route-orderId="@item.OrderId">
+                        <input value="پرداخت شد" type="submit" class="btn btn-success" />
+                     </form>    
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,9 @@
+﻿@using App.Domain.Core.FileAgg.Dtos
+@using Utility
+@model UserImageDto
+
+    <div>
+       
+        <img class="rounded-circle me-1" width="100px" height="100px" src="@ConstantProperty.ImageUserPath@Model.Image" asp-append-version="true" />
+
+    </div>

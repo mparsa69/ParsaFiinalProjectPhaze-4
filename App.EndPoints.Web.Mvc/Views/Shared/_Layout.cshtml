@@ -1,0 +1,128 @@
+﻿@using Utility
+@using System.Security.Claims
+@*@using App.Domain.Core.FileAgg.Dtos
+    @model UserImageDto*@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - App.EndPoints.Web.Mvc</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/App.EndPoints.Web.Mvc.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/jquery.Bootstrap-PersianDateTimePicker.css" />
+    @await RenderSectionAsync("Links", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @await Component.InvokeAsync("UserImages")
+                }
+
+
+
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">خانه</a>*@
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark btn btn-outline-primary h-100 mx-2 " asp-area="" asp-controller="Home" asp-action="Index">خانه</a>
+                        </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>*@
+
+                        @if (User.IsInRole(ConstantProperty.Role_Admin))
+                        {
+
+                            <li class="nav-item dropdown btn btn-outline-primary ">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">سیستم مدیریت </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item " asp-area="Admin" asp-controller="UserManagement" asp-action="Index"> کاربران </a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Order" asp-action="Index"> سفارشات و پیشنهادات </a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Comment" asp-action="Index"> کامنت ها</a>
+                                    @*<a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">مدیریت پیشنهادات</a>*@
+                                    <a class="dropdown-item " asp-area="Admin" asp-controller="MainCategory" asp-action="Index"> گروه های اصلی </a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="SecondaryCategory" asp-action="Index"> گروه های فرعی </a>
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="ThirdCategory" asp-action="Index"> گروه سرویس ها </a>
+
+
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">لینک جداکننده</a>
+
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">ایجاد کاربر جدید</a>
+                                </div>
+                            </li>
+                        }
+
+                        @if (User.IsInRole(ConstantProperty.Role_Customer))
+                        {
+
+                            <li class="nav-item dropdown btn btn-outline-primary ">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> کارتابل مدیریت مشتری </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item " asp-area="Customer" asp-controller="Home" asp-action="IndexSecondaryCategory"> لیست گروه خدمات  </a>
+                                    <a class="dropdown-item" asp-area="Customer" asp-controller="Order" asp-action="GetAllOrderByCustomerId" asp-route-customerId="@User.FindFirstValue(ClaimTypes.NameIdentifier)"> سفارشات من </a>
+                                    <a class="dropdown-item " asp-area="Customer" asp-controller="Home" asp-action="CustomerProfile"> پروفایل کاربری </a>
+                                    <a class="dropdown-item " asp-area="Admin" asp-controller="MainCategory" asp-action="Index"> yyy </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">لینک جداکننده</a>
+
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">zzz</a>
+                                </div>
+                            </li>
+                        }
+
+                        @if (User.IsInRole(ConstantProperty.Role_Expert))
+                        {
+
+                            <li class="nav-item dropdown btn btn-outline-primary ">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> کارتابل مدیریت متخصص </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item " asp-area="Expert" asp-controller="Home" asp-action="GetAllOrder"> سفارشات  </a>
+                                    <a class="dropdown-item" asp-area="Expert" asp-controller="Home" asp-action="GetSuggestionByExpertId" asp-route-expertId="@User.FindFirstValue(ClaimTypes.NameIdentifier)">پیشنهادات من </a>
+                                    <a class="dropdown-item " asp-area="Expert" asp-controller="Home" asp-action="ExpertProfile"> پروفایل کاربری </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">لینک جداکننده</a>
+
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">zzz</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - App.EndPoints.Web.Mvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/calendar.js" type="text/javascript"></script>
+    <script src="~/js/jquery.Bootstrap-PersianDateTimePicker.js" type="text/javascript"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

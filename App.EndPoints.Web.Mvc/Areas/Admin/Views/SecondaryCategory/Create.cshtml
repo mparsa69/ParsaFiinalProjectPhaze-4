@@ -1,0 +1,55 @@
+﻿@using App.Domain.Core.BaseService.Entities
+@model SecondaryCategory
+<form method="post" enctype="multipart/form-data" asp-controller="SecondaryCategory" asp-action="Create">
+    <div class="border p-3">
+        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+        <div class="form-group row">
+            <h2 class="text-info pl-3">ایجاد دسته بندی ثانویه </h2>
+        </div>
+
+
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row p-3">
+                    <div class="col-4">
+                        <label asp-for="Title"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row p-3">
+                    <div class="col-4">
+                        <label asp-for="MainCategoryId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="MainCategoryId" asp-items="@ViewBag.MainCategoryDropDown" class="form-control">
+                            <option disabled selected>-- انتخاب گروه اصلی   --</option>
+                        </select>
+                        <span asp-validation-for="MainCategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group row p-3">
+                        <div class="col-6">
+                            <input type="submit" value="افزودن" class="btn btn-primary w-100" />
+                        </div>
+                        <div class="col-2">
+                            <a asp-controller="SecondaryCategory" asp-action="Index" class="btn btn-success"><i class="fas fa-sign-out-alt"></i>بازگشت</a>
+                        </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @* Keep this empty *@
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section scripts{
+    @{<partial name="_ValidationScriptsPartial"/>}
+}

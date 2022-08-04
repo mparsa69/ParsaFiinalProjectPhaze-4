@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "f49aefe9-87fa-44cd-bfcc-7e25ca6abd7b": {
+      "ProjectGuid": "f49aefe9-87fa-44cd-bfcc-7e25ca6abd7b",
+      "DisplayName": "App.EndPoints.Web.Mvc",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "7bba6c77-1326-4435-b82f-7701deb426f8": {
+      "ProjectGuid": "7bba6c77-1326-4435-b82f-7701deb426f8",
+      "DisplayName": "App.Infrastructures.Database.SqlServer",
+      "ColorIndex": 1
+    },
+    "0faeaa36-a926-4b81-969c-36fdf1557b8a": {
+      "ProjectGuid": "0faeaa36-a926-4b81-969c-36fdf1557b8a",
+      "DisplayName": "Utility",
+      "ColorIndex": 2
+    },
+    "32f310dd-68c5-49c0-b976-b99a0c37e82e": {
+      "ProjectGuid": "32f310dd-68c5-49c0-b976-b99a0c37e82e",
+      "DisplayName": "App.Domain.Core",
+      "ColorIndex": 3
+    },
+    "0c63ee80-0380-4799-90c8-eed81a493d9e": {
+      "ProjectGuid": "0c63ee80-0380-4799-90c8-eed81a493d9e",
+      "DisplayName": "App.Domain.Services",
+      "ColorIndex": 4
+    }
+  },
+  "NextColorIndex": 5
+}

@@ -1,0 +1,111 @@
+﻿@using App.Domain.Core.SuggestionAgg.Dtos
+@model SuggestionDto
+@section Links{
+    @{
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href='css/normalize.css' rel='stylesheet' />
+    <link href='css/fontawesome/css/font-awesome.min.css' rel='stylesheet' />
+    <link href="css/vertical-responsive-menu.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/prism.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/persianDatepicker-default.css" />
+    <link rel="stylesheet" href="css/persianDatepicker-dark.css" />
+    <script src="js/prism.js"></script>
+    <script src="js/vertical-responsive-menu.min.js"></script>
+    
+    }
+}
+<form method="post" enctype="multipart/form-data" asp-area="Expert" asp-controller="Home" asp-action="CreateOrderSuggestions">
+    <input type="hidden" asp-for="OrderId" />
+    
+    <div class="border p-3">
+        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+        <div class="form-group row">
+            <h2 class="text-info pl-3">ثبت پیشنهاد  </h2>
+        </div>
+
+
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row p-3">
+                    <div class="col-4">
+                        <label asp-for="SuggestedPrice"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="SuggestedPrice" class="form-control" />
+                        <span asp-validation-for="SuggestedPrice" class="text-danger"></span>
+                    </div>
+                </div>
+
+               @* <div class="form-group row p-3">
+                    <div class="col-4">
+                        <label asp-for="ThirdCategoryId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="ThirdCategoryId" asp-items="@ViewBag.ThirdCategoryDropDown" class="form-control">
+                            <option disabled selected>-- انتخاب گروه    --</option>
+                        </select>
+                        <span asp-validation-for="ThirdCategoryId" class="text-danger"></span>
+                    </div>
+                </div>*@
+                 <div class="form-group row p-3">
+                    <div class="col-4">
+                        <label asp-for="SuggestionDate"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="date" asp-for="SuggestionDate" class="form-control" />
+                        @*<input asp-for="SuggestionDate" type="text" placeholder="تاریخ" id="pdpDefault" class="form-control"/>&nbsp;&nbsp;&nbsp;&nbsp;*@
+                        <span asp-validation-for="SuggestionDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-3">
+                    <div class="col-4">
+                        <label asp-for="StartTime"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="StartTime" class="form-control" />
+                        <span asp-validation-for="StartTime" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-3">
+                    <div class="col-4">
+                        <label asp-for="Duration"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Duration" class="form-control" />
+                        <span asp-validation-for="Duration" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-3">
+                        <div class="col-6">
+                            <input type="submit" value="افزودن" class="btn btn-primary w-100" />
+                        </div>
+                        <div class="col-2">
+                            <a asp-area="Customer" asp-controller="Order" asp-action="Index" class="btn btn-success"><i class="fas fa-sign-out-alt"></i>بازگشت</a>
+                        </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @* Keep this empty *@
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section scripts{
+    
+        <partial name="_ValidationScriptsPartial"/>
+        <script src="js/jquery-1.10.1.min.js"></script>
+        <script src="js/persianDatepicker.js"></script>
+
+        <script>
+            $(function () {
+                //usage
+                $(".usage").persianDatepicker();
+
+                //themes
+                $("#pdpDefault").persianDatepicker({ alwaysShow: true, });
+            })
+       </script>
+}

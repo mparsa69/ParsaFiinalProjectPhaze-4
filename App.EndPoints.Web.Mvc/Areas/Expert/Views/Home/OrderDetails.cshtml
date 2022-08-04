@@ -1,0 +1,58 @@
+﻿@using App.Domain.Core.OrderAgg.Dtos
+@model OrderExpertDto
+
+<h2>چزییات سفارش</h2>
+@*<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">شناسه</th>
+            <th scope="col">نام کاربری مشتری </th>
+            <th scope="col">عنوان</th>
+            <th scope="col">سرویس</th>
+            <th scope="col">قیمت پایه</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.CustomerName</td>
+                <td>@Model.Title</td>
+                <td>@Model.ThirdCategoryName</td>
+                <td>@Model.Description</td>
+                <td>@Model.BasePrice</td>
+                <td>
+                    <a class="btn btn-primary"  asp-controller="Suggestion" asp-action="OrderSuggestions" asp-route-orderId=@item.Id>
+                        ثبت پیشنهاد 
+                    </a>
+                </td>
+            </tr>
+    </tbody>
+</table>*@
+@*<div class="card border-success mb-3" style="max-width: 18rem;">
+  <div class="card-header bg-transparent border-success"></div>
+  <div class="card-body text-success">
+    <h5 class="card-title">@Model.Title</h5>
+    <p class="card-text text-justify">@Model.Description</p>
+  </div>
+  <div class="card-footer bg-transparent border-success">
+      <p class="btn btn-primary">نام مشتری : @Model.FirstName +" " @Model.LastName</p>
+      <p class="btn btn-primary">  نام کاربری : @Model.CustomerName</p>
+      <p class="btn btn-primary"> قیمت پایه : @Model.BasePrice</p>
+  </div>
+</div>
+*@
+
+<div class="card">
+  <h5 class="card-header">سرویس @Model.ThirdCategoryName</h5>
+  <div class="card-body">
+    <h5 class="card-title">عنوان : @Model.Title</h5>
+    <p class="card-text">توضیحات : @Model.Description</p>
+    <hr />
+    <p class="card-text">آدرس : @Model.FullAddress</p>
+    <p class="btn btn-primary">نام مشتری : @Model.FirstName @Model.LastName</p>
+      <p class="btn btn-success">  نام کاربری : @Model.CustomerName</p>
+      <p class="btn btn-success">  تلفن  : @Model.Phone</p>
+      <p class="btn btn-info"> قیمت پایه : @Model.BasePrice</p>
+  </div>
+</div>

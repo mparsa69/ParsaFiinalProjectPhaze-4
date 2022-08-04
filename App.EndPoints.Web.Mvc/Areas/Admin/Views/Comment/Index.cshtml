@@ -1,0 +1,71 @@
+﻿@using App.Domain.Core.OrderAgg.Dtos
+@model List<CommentDto>
+
+@{
+    ViewData["Title"] = "لیست کامنت ها";
+}
+
+<h3 style="float:right;"> لیست کامنت ها  </h3>
+<br>
+<div style="margin-top:1%; margin-bottom:1%;">
+    <div class="row">
+
+        <table class="table table-striped">
+            <td><h3 style="float:right;">لیست کامنت ها</h3></td>
+            <form asp-action="OrderComments" formmethod="post">
+            <td><input class="form-control" name="name" placeholder="نام کاربری مورد نظر را وارد کنید"></td>
+            <td><button type="submit" class="btn btn-primary">جستجو</button></td>
+            </form>
+            <form asp-action="OrderComments" formmethod="post">
+            <td><button type="submit" class="btn btn-primary">مشاهده همه</button></td>
+            </form>
+        </table>   
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">شناسه</th>
+            <th scope="col"> مشتری</th>
+            <th scope="col"> سفارش</th>
+            <th scope="col">تاریخ ثبت</th>
+            <th scope="col"> سرویس انجام شده</th>
+            <th scope="col">   وضعیت نمایش</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.CreatedUserId</td>
+                <td>@item.OrderId</td>
+                <td>@item.CreatedAt</td>
+                <td>@item.ThirdCategoryId</td>
+                <td>@item.IsShow</td>
+                
+                <td>
+                    <a class="btn btn-primary"  asp-controller="Comment" asp-action="Details" asp-route-id=@item.Id>
+                        جزییات 
+                    </a></td><td>
+                    <form method="post" asp-controller="Comment"  asp-action="Delete" asp-route-id="@item.Id">
+                        <input value="حذف" type="submit" class="btn btn-danger" />  
+                    </form>
+                    </td><td>
+                    <form method="post" asp-controller="Comment"  asp-action="EnableShow" asp-route-id="@item.Id">
+                        <input value="نمایش" type="submit" class="btn btn-danger" />  
+                    </form>
+                    </td><td>
+                    <form method="post" asp-controller="Comment"  asp-action="DisableShow" asp-route-id="@item.Id">
+                        <input value="عدم نمایش" type="submit" class="btn btn-danger" />  
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@using App.Domain.Core.OrderAgg.Dtos
+@model CommentDto
+
+<form method="post"  asp-area="Customer" asp-controller="Order" asp-action="CreateComment">
+    <input type="hidden" asp-for="ThirdCategoryId" />
+    <input type="hidden" asp-for="OrderId" />
+    <div class="border p-3">
+        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+        <div class="form-group row">
+            <h2 class="text-info pl-3">ثبت کامنت  </h2>
+        </div>
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row p-3">
+                    <div class="col-4">
+                        <label asp-for="CommentText"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="CommentText" class="form-control" />
+                        <span asp-validation-for="CommentText" class="text-danger"></span>
+                    </div>
+                </div>
+                <input type="submit"  class="btn btn-success" value="افزودن"/>
+            </div>
+            <div class="col-4">
+                @* Keep this empty *@
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section scripts{
+    @{<partial name="_ValidationScriptsPartial"/>}
+}

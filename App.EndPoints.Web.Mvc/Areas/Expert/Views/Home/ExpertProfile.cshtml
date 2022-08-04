@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Utility
+@using System.Security.Claims;
+@model UserProfileViewModel;
+<div class="row p-3 m-1">
+    <div class="row">
+        <div class="col-6">
+            <a class="btn btn-danger" asp-area="Expert" 
+            asp-controller="Home" asp-action="Edit" asp-route-userId="@User.FindFirstValue(ClaimTypes.NameIdentifier)">  ویرایش اطلاعات کاریری</a>
+
+            <a class="btn btn-info" asp-area="Expert"
+               asp-controller="Home" asp-action="AddSkill">  افزودن مهارت ها</a>
+        </div>
+        <div class="col-6">
+
+            @if (!User.IsInRole(ConstantProperty.Role_Customer))
+            {
+                <form method="post" asp-controller="Home" asp-action="AddRole">
+                    <input type="hidden" name="userRole" value="Customer" />
+                    <button type="submit" class="btn btn-primary">ارتقا به نقش مشتری</button>
+                </form>
+
+            }
+            @if (!User.IsInRole(ConstantProperty.Role_Expert))
+            {
+                <form method="post" asp-controller="Home" asp-action="AddRole">
+                    <input type="hidden" name="userRole" value="Expert" />
+                    <button type="submit" class="btn btn-primary">ارتقا به نقش متخصص</button>
+                </form>
+            }
+        </div>
+
+
+
+    </div>
+</div>
+<div class="border p-3 m-1">
+    <h4> نقش های من</h4>
+
+    @foreach (var item in Model.Roles)
+    {
+
+        <p class="btn btn-primary">@item</p>
+
+    }
+
+
+</div>
+</div>

@@ -1,0 +1,66 @@
+﻿@using App.Domain.Core.SuggestionAgg.Dtos
+@model List<SuggestionForCustomerDto>
+@{
+    ViewData["Title"] = "لیست پیشنهادات";
+}
+
+<h3 style="float:right;"> لیست پیشنهادات  </h3>
+<br>
+@*
+<div style="margin-top:1%; margin-bottom:1%;">
+    <div class="row">
+
+        <table class="table table-striped">
+            <td><h3 style="float:right;">لیست سفارشات</h3></td>
+            <form asp-action="Index" formmethod="post">
+            <td><input class="form-control" name="name" placeholder="نام کاربری مورد نظر را وارد کنید"></td>
+            <td><button type="submit" class="btn btn-primary">جستجو</button></td>
+            </form>
+            <form asp-action="Index" formmethod="post">
+            <td><button type="submit" class="btn btn-primary">مشاهده همه</button></td>
+            </form>
+        </table>   
+    </div>
+</div>
+*@
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">شناسه</th>
+            <th scope="col">نام متخصص</th>
+            <th scope="col">نام کاربری متخصص</th>
+            <th scope="col">قیمت پینهادی</th>
+            <th scope="col">ساعت شروع</th>
+            <th scope="col">مدت زمان انجام کار</th>
+            <th scope="col">تاریخ انجام کار</th>
+            <th scope="col"> مورد تایید</th>
+            
+            @*<th scope="col">قیمت پیشنهادی متخصص</th>*@
+            @*<th scope="col"></th>*@
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.ExpertFirstName @item.ExpertLastName</td>
+                <td>@item.ExpertUserName</td>
+                <td>@item.SuggestedPrice</td>
+                <td>@item.StartTime</td>
+                <td>@item.Duration</td>
+                <td>@item.SuggestionDate</td>
+                <td>@item.IsApproved</td> 
+                <td> 
+                    <form method="post" asp-area="Customer" asp-controller="Order"  asp-action="Approve" asp-route-suggestionId="@item.Id">
+                        <input value="تایید پیشنهاد" type="submit" class="btn btn-primary" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

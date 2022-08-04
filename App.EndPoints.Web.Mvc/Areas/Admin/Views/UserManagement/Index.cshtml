@@ -1,0 +1,86 @@
+﻿@using App.EndPoints.Web.Mvc.Areas.Admin.Models.ViewModels.Accounts
+@model List<UserManagementVM>
+
+@{
+    ViewData["Title"] = "لیست کاربران";
+}
+
+
+
+
+<br>
+
+<div style="margin-top:1%; margin-bottom:1%;">
+    <div class="row">
+
+        <table class="table table-striped">
+            <td><h3 style="float:right;">لیست کاربران</h3></td>
+            <form asp-action="Index" formmethod="post">
+            <td><input class="form-control" name="name" placeholder="نام مورد نظر را وارد کنید"></td>
+            <td><button type="submit" class="btn btn-primary">جستجو</button></td>
+            </form>
+            <form asp-action="Index" formmethod="post">
+            <td><button type="submit" class="btn btn-primary">مشاهده همه</button></td>
+            </form>
+            <td><a class="btn btn-success" asp-area="Identity" asp-page="/Account/Register">ایجاد کاربر جدید</a></td>
+        </table>   
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">شناسه</th>
+            <th scope="col">نام</th>
+            <th scope="col">ایمیل</th>
+            <th scope="col">شماره تلفن</th>
+            <th scope="col">مسئولیت‌ها</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <th scope="row">
+                    @user.Id
+                </th>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                <td>
+                    <div>
+                        @foreach (string role in user.Roles)
+                        {
+                            @role
+                            <a>,</a>
+                        }
+                    </div>
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-action="UserRoles" asp-route-userId="@user.Id">
+                        مسئولیت‌ها
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-success" asp-controller="Order" asp-action="Index" asp-route-userId="@user.Id">
+                        سفارشات
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="UserManagement" asp-action="UpdateUser" asp-route-userId=@user.Id>
+                        ویرایش
+                    </a>
+                </td>
+                <td>
+                    <form method="post" asp-action="RemoveUser" asp-route-userId="@user.Id">
+                        <input value="حذف" type="submit" class="btn btn-danger" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

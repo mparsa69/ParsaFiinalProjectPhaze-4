@@ -1,0 +1,67 @@
+﻿@using App.Domain.Core.OrderAgg.Entities
+@model Order
+
+<form method="post" enctype="multipart/form-data" asp-area="Customer" asp-controller="Order" asp-action="Create">
+    <input type="hidden" asp-for="ThirdCategoryId" />
+    <input type="hidden" asp-for="CustomerId" />
+    <input type="hidden" name="SecondaryId" value="@ViewBag.SecId" />
+    <div class="border p-3">
+        @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+        <div class="form-group row">
+            <h2 class="text-info pl-3">ثبت سفارش جدید </h2>
+        </div>
+
+
+        <div class="row">
+            <div class="col-8">
+                <div class="form-group row p-3">
+                    <div class="col-4">
+                        <label asp-for="Title"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                </div>
+
+               @* <div class="form-group row p-3">
+                    <div class="col-4">
+                        <label asp-for="ThirdCategoryId"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="ThirdCategoryId" asp-items="@ViewBag.ThirdCategoryDropDown" class="form-control">
+                            <option disabled selected>-- انتخاب گروه    --</option>
+                        </select>
+                        <span asp-validation-for="ThirdCategoryId" class="text-danger"></span>
+                    </div>
+                </div>*@
+
+                <div class="form-group row p-3">
+                    <div class="col-4">
+                        <label asp-for="Description"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-3">
+                        <div class="col-6">
+                            <input type="submit" value="افزودن" class="btn btn-primary w-100" />
+                        </div>
+                        <div class="col-2">
+                            <a asp-area="Customer" asp-controller="Order" asp-action="Index" class="btn btn-success"><i class="fas fa-sign-out-alt"></i>بازگشت</a>
+                        </div>
+                </div>
+            </div>
+            <div class="col-4">
+                @* Keep this empty *@
+            </div>
+        </div>
+
+    </div>
+</form>
+
+@section scripts{
+    @{<partial name="_ValidationScriptsPartial"/>}
+}

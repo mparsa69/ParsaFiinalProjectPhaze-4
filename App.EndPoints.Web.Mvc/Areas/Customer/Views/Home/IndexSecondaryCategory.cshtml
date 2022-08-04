@@ -1,0 +1,29 @@
+﻿@using App.Domain.Core.BaseService.Entities
+@model List<SecondaryCategory>
+
+    <h2>گروه بندی</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">شناسه</th>
+            <th scope="col">نام</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.Id</th>
+                <td>@item.Title</td>
+                <td>
+                    
+                    <a class="btn btn-primary" asp-area="Customer" asp-controller="Home" asp-action="IndexThirdCategory" asp-route-id=@item.Id>
+                        مشاهده سرویس های این گروه 
+                    </a>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
