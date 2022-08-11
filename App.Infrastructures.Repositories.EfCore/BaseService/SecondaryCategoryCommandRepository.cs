@@ -15,9 +15,10 @@ namespace App.Infrastructures.Repositories.EfCore.BaseService
     public class SecondaryCategoryCommandRepository : ISecondaryCategoryCommandRepository
     {
         private readonly AppDbContext _dbConext;
-       
+        private readonly ILogger<SecondaryCategoryCommandRepository> _logger;
 
-        public SecondaryCategoryCommandRepository(AppDbContext dbConext)
+
+        public SecondaryCategoryCommandRepository(AppDbContext dbConext, ILogger<SecondaryCategoryCommandRepository> _logger)
         {
             _dbConext = dbConext;
 
@@ -32,6 +33,7 @@ namespace App.Infrastructures.Repositories.EfCore.BaseService
             };
             await _dbConext.SecondaryCategories.AddAsync(secondaryCategory);
             await _dbConext.SaveChangesAsync();
+            _logger.LogInformation("SecondaryCategory Add" + ":" + model.Title);
         }
 
         public async Task Delete(int id)

@@ -1,0 +1,17 @@
+E:\FinalProject\App.Domain.Services\bin\Release\net6.0\App.Domain.Services.deps.json
+E:\FinalProject\App.Domain.Services\bin\Release\net6.0\App.Domain.Services.runtimeconfig.json
+E:\FinalProject\App.Domain.Services\bin\Release\net6.0\App.Domain.Services.dll
+E:\FinalProject\App.Domain.Services\bin\Release\net6.0\ref\App.Domain.Services.dll
+E:\FinalProject\App.Domain.Services\bin\Release\net6.0\App.Domain.Services.pdb
+E:\FinalProject\App.Domain.Services\bin\Release\net6.0\App.Domain.Core.dll
+E:\FinalProject\App.Domain.Services\bin\Release\net6.0\App.Domain.Core.pdb
+E:\FinalProject\App.Domain.Services\obj\Release\net6.0\App.Domain.Services.csproj.AssemblyReference.cache
+E:\FinalProject\App.Domain.Services\obj\Release\net6.0\App.Domain.Services.GeneratedMSBuildEditorConfig.editorconfig
+E:\FinalProject\App.Domain.Services\obj\Release\net6.0\App.Domain.Services.AssemblyInfoInputs.cache
+E:\FinalProject\App.Domain.Services\obj\Release\net6.0\App.Domain.Services.AssemblyInfo.cs
+E:\FinalProject\App.Domain.Services\obj\Release\net6.0\App.Domain.Services.csproj.CoreCompileInputs.cache
+E:\FinalProject\App.Domain.Services\obj\Release\net6.0\App.Domain.Services.csproj.CopyComplete
+E:\FinalProject\App.Domain.Services\obj\Release\net6.0\App.Domain.Services.dll
+E:\FinalProject\App.Domain.Services\obj\Release\net6.0\ref\App.Domain.Services.dll
+E:\FinalProject\App.Domain.Services\obj\Release\net6.0\App.Domain.Services.pdb
+E:\FinalProject\App.Domain.Services\obj\Release\net6.0\App.Domain.Services.genruntimeconfig.cache

@@ -30,7 +30,17 @@
       "ProjectGuid": "0c63ee80-0380-4799-90c8-eed81a493d9e",
       "DisplayName": "App.Domain.Services",
       "ColorIndex": 4
+    },
+    "1d3ff1c6-f317-4bf3-9f1e-ac6b6b7ceb95": {
+      "ProjectGuid": "1d3ff1c6-f317-4bf3-9f1e-ac6b6b7ceb95",
+      "DisplayName": "App.Infrastructures.Repositories.EfCore",
+      "ColorIndex": 5
+    },
+    "3fd71485-168f-4389-9669-865c6700197b": {
+      "ProjectGuid": "3fd71485-168f-4389-9669-865c6700197b",
+      "DisplayName": "App.Domain.AppServices",
+      "ColorIndex": 6
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 7
 }

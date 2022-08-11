@@ -22,9 +22,13 @@ using App.Domain.Core.SuggestionAgg.Contracts.IServices;
 using App.Domain.Services.Suggestion;
 using App.Domain.Core.SuggestionAgg.Contracts.IRepositories;
 using App.Infrastructures.Repositories.EfCore.SuggestionRepo;
+using App.EndPoints.Web.Mvc.ExceptionHandler;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddSeq(builder.Configuration.GetSection("Seq"));
+builder.Services.AddDistributedMemoryCache();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
@@ -48,6 +52,7 @@ builder.Services
     .AddIdentity<IdentityUser, IdentityRole>()
     .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<AppDbContext>();
+    
 
 /*builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDbContext>();*/
@@ -93,6 +98,7 @@ builder.Services.AddScoped<ICommentQueryRepository, CommentQueryRepository>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 var app = builder.Build();
+app.UseExceptionHandlerMiddleware();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

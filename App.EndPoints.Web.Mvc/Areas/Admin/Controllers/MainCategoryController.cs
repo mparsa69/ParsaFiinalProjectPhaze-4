@@ -12,10 +12,12 @@ namespace App.EndPoints.Web.Mvc.Areas.Admin.Controllers
     public class MainCategoryController : Controller
     {
         private readonly IMainCategoryAppService _mainCategoryAppService;
+        private readonly ILogger<IMainCategoryAppService> _logger;
 
-        public MainCategoryController(IMainCategoryAppService mainCategoryAppService)
+        public MainCategoryController(IMainCategoryAppService mainCategoryAppService, ILogger<IMainCategoryAppService> logger)
         {
             _mainCategoryAppService = mainCategoryAppService;
+            _logger = logger;
         }
 
         public async Task<IActionResult> Index()
@@ -33,6 +35,7 @@ namespace App.EndPoints.Web.Mvc.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
+                _logger.LogError("MainCategory is Not Valid");
                 return View(model);
             }
             await _mainCategoryAppService.Add(model);
@@ -53,6 +56,7 @@ namespace App.EndPoints.Web.Mvc.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
+                _logger.LogError("MainCategory is Not Valid");
                 return View(model);
             }
             await _mainCategoryAppService.Update(model);
@@ -71,11 +75,13 @@ namespace App.EndPoints.Web.Mvc.Areas.Admin.Controllers
         {
             if (id == null)
             {
+                _logger.LogWarning("MainCategory Id is Null ");
                 return RedirectToAction("Index");
             }
             var model = await _mainCategoryAppService.Get(id);
             if (model == null)
             {
+                _logger.LogWarning("MainCategory Model is Null ");
                 return RedirectToAction("Index");
             }
             await _mainCategoryAppService.Delete(model.Id);

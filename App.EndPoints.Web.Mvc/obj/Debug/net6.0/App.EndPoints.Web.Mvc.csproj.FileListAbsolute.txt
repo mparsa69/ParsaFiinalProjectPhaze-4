@@ -570,3 +570,4 @@ E:\FinalProject\App.EndPoints.Web.Mvc\obj\Debug\net6.0\App.EndPoints.Web.Mvc.dll
 E:\FinalProject\App.EndPoints.Web.Mvc\obj\Debug\net6.0\ref\App.EndPoints.Web.Mvc.dll
 E:\FinalProject\App.EndPoints.Web.Mvc\obj\Debug\net6.0\App.EndPoints.Web.Mvc.pdb
 E:\FinalProject\App.EndPoints.Web.Mvc\obj\Debug\net6.0\App.EndPoints.Web.Mvc.genruntimeconfig.cache
+E:\FinalProject\App.EndPoints.Web.Mvc\bin\Debug\net6.0\Seq.Extensions.Logging.dll

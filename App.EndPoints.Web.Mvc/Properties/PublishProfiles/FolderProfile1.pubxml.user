@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\m.parsa\Desktop\parsaservice</_PublishTargetUrl>
+    <History>True|2022-08-11T11:18:33.9335259Z;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="SqlServerConnection">
+      <Value>Server=.%3bDatabase=FinalProjectSeedData%3bTrusted_Connection=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="App.Infrastructures.Database.SqlServer.Data.AppDbContext">
+      <Value>Server=.%3bDatabase=FinalProjectSeedData%3bTrusted_Connection=True%3b</Value>
+    </EFMigrations>
+  </ItemGroup>
+</Project>
